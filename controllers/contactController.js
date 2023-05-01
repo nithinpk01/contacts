@@ -1,24 +1,30 @@
+const asyncHandler = require("express-async-handler");
 // @desc getAllContacts
-// @route GET api/contacts/:id
+// @route GET api/contacts
 //@access public
-const getContacts = (req, res) => {
+const getContacts = asyncHandler(async (req, res) => {
     res.status(200).json({ message: `get all contacts` })
-};
+});
 
 // @desc getContactById
 // @route GET api/contacts/:id
 //@access public
-const getContact = (req, res) => {
+const getContact = asyncHandler(async(req, res) => {
     res.status(200).json({ message: `get contacts for ${req.params.id}` })
-};
+});
 
 // @desc createContacts
 // @route POST api/contacts
 //@access public
-const createContact = (req, res) => {
+const createContact = asyncHandler(async(req, res) => {
     console.log(req.body)
+    const { name, email } = req.body;
+    if (!name || !email) {
+        res.status(400);
+        throw new Error("all are mandatry")
+    }
     res.status(201).json({ message: 'post contacts' })
-};
+});
 
 // @desc getAllContacts
 // @route PUT api/contacts/:id
