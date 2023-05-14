@@ -9,14 +9,14 @@ const getContacts = asyncHandler(async (req, res) => {
 // @desc getContactById
 // @route GET api/contacts/:id
 //@access public
-const getContact = asyncHandler(async(req, res) => {
+const getContact = asyncHandler(async (req, res) => {
     res.status(200).json({ message: `get contacts for ${req.params.id}` })
 });
 
 // @desc createContacts
 // @route POST api/contacts
 //@access public
-const createContact = asyncHandler(async(req, res) => {
+const createContact = asyncHandler(async (req, res) => {
     console.log(req.body)
     const { name, email } = req.body;
     if (!name || !email) {
@@ -29,15 +29,15 @@ const createContact = asyncHandler(async(req, res) => {
 // @desc getAllContacts
 // @route PUT api/contacts/:id
 //@access public
-const updateContact = (req, res) => {
+const updateContact = asyncHandler(async (req, res) => {
     res.status(200).json({ message: `update contact for${req.params.id}` })
-};
+});
 
 // @desc deleteContacts
 // @route DELETE api/contacts/:id
 //@access public
-const deleteContact = (req, res) => {
+const deleteContact = asyncHandler(async (req, res) => {
     res.status(200).json({ message: `delete contact for ${req.params.id}` })
-};
+});
 
 module.exports = { getContacts, getContact, createContact, updateContact, deleteContact };
